@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+
+  ## PHP SERVER
+  php-fpm:
+    image: devilbox/php-fpm:7.4-prod
+    container_name: php-fpm
+
+  ## CRON TASKS
+  cron:
+    image: medeirosinacio/simple-crontab-fcgi-enable
+    container_name: crontab
+    restart: always
+    depends_on:
+      - php-fpm
+    links:
+      - php-fpm
+    environment:
+      - CRON_FILE=crontab
+      - CRON_LOG=/var/log/crontab.log
+      - TZ=${PROJECT_TIMEZONE}
+    volumes:
+      - ./crontab.rules:/crontab
+      - ./cron-php.sh:/cron-php.sh
