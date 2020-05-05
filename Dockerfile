@@ -8,6 +8,7 @@ RUN mkdir /var/log &1> /dev/null
 RUN ln -sf /proc/1/fd/1 /var/log/crontab.default.log
 
 COPY docker-entrypoint.sh /
+RUN chmod +x docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 CMD ["sh", "docker-entrypoint.sh"]
