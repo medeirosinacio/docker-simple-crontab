@@ -1,7 +1,7 @@
 FROM alpine:3.11.3
 MAINTAINER medeirosinacio@outlook.com
 
-RUN apk add --no-cache --upgrade tzdata apk-cron fcgi bash && rm -rf /var/cache/apk/*
+RUN apk add --no-cache --upgrade tzdata apk-cron fcgi bash curl && rm -rf /var/cache/apk/*
 
 RUN mkdir /var/log &1> /dev/null
 
